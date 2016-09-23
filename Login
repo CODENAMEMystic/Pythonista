@@ -1,0 +1,23 @@
+#1. Prompt password w/ secure login
+#2. Check if cLogInfo == password
+#3. If true goto menu()
+# . If false goto loginFail()
+
+
+import console
+import time
+
+def loginFail():
+	console.alert('Incorrect Password','','Ok')
+	login()
+def login():
+	console.clear()
+	cLogInfo = console.password_alert('Secure Login','Enter your password','','ok',)
+	print('Please Wait')
+	time.sleep(1)
+
+	if cLogInfo == 'Your Password': #TODO: redesign for user password creation
+		console.clear()
+		print('Welcome')
+	else:
+		loginFail()
