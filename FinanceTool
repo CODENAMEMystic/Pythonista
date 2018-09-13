@@ -1,0 +1,86 @@
+import ui, math
+
+bankBalance = 615.95
+availableAmt = str(0.5*bankBalance)
+
+avgHoursWorked = 26
+payRate = 9.00
+mIncome = avgHoursWorked*payRate*4
+
+distributeLabels = {'savingsPercent' : 100,
+										'othersPercent' : 0,
+										'autoPercent' : 0}
+
+class Item:
+	def __init__(self, name, price):
+		self.name = name
+		self.price = price
+		self.remaining = price
+		self.paid = 0
+		self.progress = 0
+		
+	
+	def changePaid(self, numb):
+		self.paid = numb
+		self.remaining = self.price-self.paid
+		self.progress = self.remaining/self.price
+	
+	def __repr__(self):
+		return 'Name: '+self.name+'\nPrice: '+str(self.price)+'\nPaid: '+str(self.paid)+'\nRemaining: '+str(self.remaining)
+
+
+	
+itemList = {'TSW Sebring Wheel - 20x10': 309.99,
+						'X-Force Exhaust Cutout Kit - 3 in.': 179.10,
+						'Distressed Flag Quarter Window Decal': 29.99,
+						'AmericanMuscle Windshield Banner': 9.99,
+						'MGP Red Caliper Covers w/ Tri-Bar Pony Logo - Front & Rear': 199.00,
+						'JLT Air Intake & Bama Rev-X Tuner': 289.00,
+						'Procharger Intercooled Supercharger Kit': 6270.04,
+						'TruShield Custom-Fit Car Cover': 149.99,
+						'Magna Flow Axle-back Exhaust': 453.89,
+						'Short Throw Shifter': 247.99
+						}
+										
+
+
+
+def setIncome(sender):
+	global avgHoursWorked, payRate, mIncome
+	if sender.name == 'AHW':
+		avgHoursWorked = int(sender.text)
+	if sender.name == 'PR':
+		payRate = int(sender.text)
+	
+		
+	mIncome = avgHoursWorked*payRate*4
+	v['MI'].text= str(mIncome)
+		
+def sliderEvent(sender):
+	global mIncome
+	v['months'].text = 'Months: '+str(math.ceil(sender.value*10))+' Income: '+str((math.ceil(sender.value*10)*mIncome))
+def distribute(sender):
+	for key, value in distributeLabels.items():
+		if key == sender.name:
+			distributeLabels[key] = int(sender.text)
+	sender.text+= '%'
+	v['percentBalanceLbl'].text = 'Percent Balance: '+ str(100-distributeLabels["savingsPercent"]-distributeLabels['othersPercent']-distributeLabels['autoPercent'])
+	
+def createLabels(LabelList):
+	x = 0
+	for key, value in itemList.items():
+		pass
+		
+		
+	
+		
+	
+
+
+v = ui.load_view()
+
+progList = [v['l1'], v['l2'], v['l3'], v['l4'], v['l5'], v['l6'], v['l7'], v['l8']]
+
+
+
+#v.present()
