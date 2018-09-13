@@ -30,17 +30,17 @@ class Item:
 
 
 	
-itemList = {'TSW Sebring Wheel - 20x10': 309.99,
-						'X-Force Exhaust Cutout Kit - 3 in.': 179.10,
-						'Distressed Flag Quarter Window Decal': 29.99,
-						'AmericanMuscle Windshield Banner': 9.99,
-						'MGP Red Caliper Covers w/ Tri-Bar Pony Logo - Front & Rear': 199.00,
-						'JLT Air Intake & Bama Rev-X Tuner': 289.00,
-						'Procharger Intercooled Supercharger Kit': 6270.04,
-						'TruShield Custom-Fit Car Cover': 149.99,
-						'Magna Flow Axle-back Exhaust': 453.89,
-						'Short Throw Shifter': 247.99
-						}
+itemList = [Item('TSW Sebring Wheel - 20x10',309.99),
+						Item('X-Force Exhaust Cutout Kit - 3 in.', 179.10),
+						Item('Distressed Flag Quarter Window Decal', 29.99),
+						Item('AmericanMuscle Windshield Banner', 9.99),
+						Item('MGP Red Caliper Covers w/ Tri-Bar Pony Logo - Front & Rear', 199.00),
+						Item('JLT Air Intake & Bama Rev-X Tuner', 289.00),
+						Item('Procharger Intercooled Supercharger Kit', 6270.04),
+						Item('TruShield Custom-Fit Car Cover', 149.99),
+						Item('Magna Flow Axle-back Exhaust', 453.89),
+						Item('Short Throw Shifter', 247.99)
+						]
 										
 
 
@@ -68,19 +68,21 @@ def distribute(sender):
 	
 def createLabels(LabelList):
 	x = 0
-	for key, value in itemList.items():
-		pass
-		
-		
-	
-		
+	while x < 8:
+
+		nameList[x].text = itemList[x].name
+		progList[x].text = str(itemList[x].progress)+'%'
+		valueList[x].text = '-    $'+str(itemList[x].paid)+'	out of	$'+str(itemList[x].price)
+		x+=1
 	
 
 
 v = ui.load_view()
 
+nameList = [v['t1'], v['t2'], v['t3'], v['t4'], v['t5'], v['t6'], v['t7'], v['t8']]
 progList = [v['l1'], v['l2'], v['l3'], v['l4'], v['l5'], v['l6'], v['l7'], v['l8']]
+valueList = [v['v1'], v['v2'], v['v3'], v['v4'], v['v5'], v['v6'], v['v7'], v['v8']]
+createLabels(progList)
 
 
-
-#v.present()
+v.present()
