@@ -1,7 +1,7 @@
 import ui, math
 
 bankBalance = 615.95
-availableAmt = str(0.5*bankBalance)
+availableAmt = bankBalance
 
 avgHoursWorked = 26
 payRate = 9.00
